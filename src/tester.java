@@ -6,12 +6,13 @@ public class tester {
     public static void main(String[] args){
         try {
             MangaDownloader readerTest = new MangaReaderDownloader();
-//            readerTest.search("naruto");
-            MangaPage res = readerTest.getManga("https://www.mangareader.net/naruto");
-//            System.out.println(res.getChapters()[0].getUrl());
+////            readerTest.search("naruto");
+//            MangaPage res = readerTest.getManga("https://www.mangareader.net/naruto");
+////            System.out.println(res.getChapters()[0].getUrl());
             Chapter chap = readerTest.getChapter("https://www.mangareader.net/naruto/1");
-            System.out.println(chap.toString());
-            MangaDownloader.compileChapterImages(chap);
+//            System.out.println(chap.toString());
+//            MangaDownloader.compileChapterImages(chap);
+            MangaDownloader.chapterImagesToPdfPages(chap);
         }catch (Exception e){
             e.printStackTrace();
         }
