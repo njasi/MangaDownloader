@@ -10,10 +10,8 @@ import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class Savers {
@@ -24,14 +22,14 @@ public class Savers {
      * @param chap the chapter to be compiled.
      * @throws IOException
      */
-    private static BufferedImage compileChapterImages(Chapter chap) throws IOException{
+    private static BufferedImage compileChapterToTallImage(Chapter chap) throws IOException{
         ArrayList<String> imageUrls = chap.getImages();
 
         BufferedImage[] images = new BufferedImage[imageUrls.size()];
         int maxWidth = 0;
         for(int i = 0; i < imageUrls.size(); i++){
             URL currentUrl = new URL(imageUrls.get(i));
-            BufferedImage currentImage =ImageIO.read(currentUrl);
+            BufferedImage currentImage = ImageIO.read(currentUrl);
             if(maxWidth < currentImage.getWidth()){
                 maxWidth = currentImage.getWidth();
             }
@@ -60,8 +58,8 @@ public class Savers {
      * @param chap the chapter with the images
      * @param path the path it will be saved at
      */
-    public static void chapterToPdfPages(Chapter chap, String path){
-        chapterImagesToPdfPages(chap.getImages(),path);
+    public static void chapterToPdfPages(Chapter chap, String path) throws IOException{
+        imageUrlsToPdfPages(chap.getImages(),path);
     }
 
     /**
@@ -69,9 +67,15 @@ public class Savers {
      * @param images the images (urls) to be written to the pdf
      * @param path the path it will be saved at
      */
-    private static void chapterImageUrlsToPdfPages(ArrayList<String> images, String path){
-
+    private static void imageUrlsToPdfPages(ArrayList<String> imageUrls, String path) throws IOException{
+        ArrayList<BufferedImage> images = new ArrayList<>(0);
+        for(String image: imageUrls){
+            images.add(ImageIO.read(new URL(image)));
+        }
+        imagesToPdfPages(images);
     }
+
+    private static void imagesToPdfPages(ArrayList<BufferedImage> images)
 
     /**
      * Makes one tall image and splits it up into standard page sized images (which is then saved with chapterImagesToPdfPages)
@@ -79,11 +83,19 @@ public class Savers {
      * @param path
      * @throws IOException
      */
-    public static void stitchAndUnstitchToPDF(Chapter chap, String path) throws IOException{
-        BufferedImage stitched = compileChapterImages(chap);
+    public static void stitchAndUnstitchChapterToPDF(Chapter chap, String path) throws IOException{
+        BufferedImage stitched = compileChapterToTallImage(chap);
+
+        int height = stitched.getHeight();
+        int width = stitched.getWidth();
 
         ArrayList<BufferedImage> unstitched = new ArrayList<>(0);
-        chapterImagesToPdfPages();
+        for(int i = 0; i < (int)((double)height/4) ; i++){
+
+            unstitched.add(stitched.getSubimage(0, y, 32, 32));
+        }
+
+        imagesToPdfPages(unstitched);
     }
 
     /**\
