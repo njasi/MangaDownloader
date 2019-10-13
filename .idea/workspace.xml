@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71306a13-dde6-4217-aec4-8a9edb30d810" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MangaDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MangaDownloader.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MangaDownloader/Chapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MangaDownloader/Chapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MangaDownloader/MangaDownloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MangaDownloader/MangaDownloader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MangaDownloader/MangaReaderDownloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MangaDownloader/MangaReaderDownloader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MangaDownloader/tester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MangaDownloader/tester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MangaDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MangaDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MangaReaderDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MangaReaderDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Savers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+            <state relative-caret-position="285">
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            <state relative-caret-position="15">
+              <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -153,12 +143,12 @@
         <option value="$PROJECT_DIR$/src/MangaReader.java" />
         <option value="$PROJECT_DIR$/src/MangaPage.java" />
         <option value="$PROJECT_DIR$/src/MangaSearchResult.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Savers.java" />
         <option value="$PROJECT_DIR$/src/Chapter.java" />
         <option value="$PROJECT_DIR$/src/MangaReaderDownloader.java" />
         <option value="$PROJECT_DIR$/src/MangaDownloader.java" />
         <option value="$PROJECT_DIR$/src/tester.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -197,7 +187,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1570941367887" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1570941567511" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -261,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570933062228</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="threaded downloading &quot;works&quot;">
+      <created>1570941389099</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1570941389099</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -299,7 +296,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="did some things" />
     <MESSAGE value="oof" />
-    <option name="LAST_COMMIT_MESSAGE" value="oof" />
+    <MESSAGE value="threaded downloading &quot;works&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="threaded downloading &quot;works&quot;" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/HtmlGetter.java">
@@ -316,13 +314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -398,11 +389,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tester.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+        <state relative-caret-position="285">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>
