@@ -4,6 +4,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.select.NodeFilter;
 
+import java.awt.desktop.SystemEventListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -57,7 +58,9 @@ public class MangaReaderDownloader extends MangaDownloader {
             Element currentData = tds.get(i);
             Element a = currentData.child(1);
             String chapterName = currentData.text().replace(a.text() + " : ","");
-            mangaChapters[i / 2] = new Chapter(a.attr("href"), chapterName);
+            Chapter temp = new Chapter("https://www.mangareader.net" +a.attr("href"), chapterName);
+            temp.setNumber(a.attr("href").split("/")[2]);
+            mangaChapters[i / 2] = temp;
         }
         scrapedManga.setChapterNum(mangaChapters.length);
         scrapedManga.setChapters(mangaChapters);
@@ -66,13 +69,18 @@ public class MangaReaderDownloader extends MangaDownloader {
 
     @Override
     public Chapter getChapter(String url) throws IOException {
+        System.out.println(url);
         Document doc = Jsoup.connect(url).get();
 
         String name = doc.getElementsByTag("h1").first().text();
         String allText = doc.getElementById("selectpage").text().replace(" of ","");
         int numPages = Integer.parseInt(allText.replace(doc.getElementById("pageMenu").text(),""));
 
-        Chapter chap = new Chapter(url, name,numPages);
+        Chapter chap = new Chapter(url, name, numPages);
+
+        String[] split = url.split("/");
+        chap.setNumber(split[4]);
+        chap.setSeriesName(split[3].replace("-","_"));
 
         for(int  i = 1; i < numPages + 1; i++){
             Document page = Jsoup.connect(url + "/" + i).get();
