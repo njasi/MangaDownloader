@@ -38,7 +38,7 @@ public abstract class MangaDownloader {
 
     abstract Chapter getChapter(String url) throws IOException;
 
-    void downloadManga(MangaPage manga, int start, int end, int type) throws IOException{
+    void downloadManga(MangaPage manga, int start, int end, int type) throws IOException, InterruptedException{
         //will call download chapter in a loop / thread pattern
         //ie it will not need to be downloader specific
         ArrayList<Chapter> toDownload= new ArrayList<Chapter>(end - start);
@@ -54,7 +54,7 @@ public abstract class MangaDownloader {
                 @Override
                 public void run() {
                     try {
-                        System.out.println("downloading chapter " + chap.getNumber() + " of " + chap.getSeriesName());
+                        System.out.println("downloading chapter " + chap.getNumber());
                         Chapter fullChap = getChapter(chap);
                         downloadChapter(fullChap, type);
                     } catch (Exception e){
@@ -68,7 +68,6 @@ public abstract class MangaDownloader {
         for(Thread runn:toRun){
             runn.start();
         }
-
     }
 
     void downloadChapter(Chapter chap, int type) throws IOException, COSVisitorException{

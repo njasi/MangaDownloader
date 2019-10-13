@@ -69,7 +69,6 @@ public class MangaReaderDownloader extends MangaDownloader {
 
     @Override
     public Chapter getChapter(String url) throws IOException {
-        System.out.println(url);
         Document doc = Jsoup.connect(url).get();
 
         String name = doc.getElementsByTag("h1").first().text();
