@@ -10,11 +10,13 @@ import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class Savers {
+    final static private double LETTER_PAGE_PROPORTION = 11 / 8.5;
     final static private String AUTHOR = "mangadownloader";
 
     /**
@@ -58,8 +60,8 @@ public class Savers {
      * @param chap the chapter with the images
      * @param path the path it will be saved at
      */
-    public static void chapterToPdfPages(Chapter chap, String path) throws IOException{
-        imageUrlsToPdfPages(chap.getImages(),path);
+    public static void chapterToPdfPages(Chapter chap, String path) throws IOException, COSVisitorException{
+        imageUrlsToPdfPages(chap.getImages(), path);
     }
 
     /**
@@ -67,15 +69,44 @@ public class Savers {
      * @param images the images (urls) to be written to the pdf
      * @param path the path it will be saved at
      */
-    private static void imageUrlsToPdfPages(ArrayList<String> imageUrls, String path) throws IOException{
+    private static void imageUrlsToPdfPages(ArrayList<String> imageUrls, String path) throws IOException, COSVisitorException{
         ArrayList<BufferedImage> images = new ArrayList<>(0);
         for(String image: imageUrls){
             images.add(ImageIO.read(new URL(image)));
         }
-        imagesToPdfPages(images);
+        imagesToPdfPages(images, path);
     }
 
-    private static void imagesToPdfPages(ArrayList<BufferedImage> images)
+    private static void imagesToPdfPages(ArrayList<BufferedImage> images,String path) throws IOException, COSVisitorException{
+        PDDocument document = new PDDocument();
+
+        for(BufferedImage image: images){
+            int w = image.getWidth();
+            int h = image.getHeight();
+            double scale;
+
+            PDPage page = new PDPage(PDPage.PAGE_SIZE_LETTER);
+            document.addPage(page);
+
+            if(w * LETTER_PAGE_PROPORTION > h / LETTER_PAGE_PROPORTION){ // wider than tall
+                scale = PDPage.PAGE_SIZE_LETTER.getWidth() / w;
+            }else{ // taller than wide
+                scale = PDPage.PAGE_SIZE_LETTER.getHeight() / h;
+            }
+
+            BufferedImage resized = imageTOBufferedImage(image.getScaledInstance(
+                    (int)(w * scale),(int)(h * scale),0));
+            PDXObjectImage img = new PDJpeg(document, resized);
+
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            contentStream.drawImage(img, 0, 0);
+
+            contentStream.close();
+        }
+
+        document.save(path);
+        document.close();
+    }
 
     /**
      * Makes one tall image and splits it up into standard page sized images (which is then saved with chapterImagesToPdfPages)
@@ -83,19 +114,20 @@ public class Savers {
      * @param path
      * @throws IOException
      */
-    public static void stitchAndUnstitchChapterToPDF(Chapter chap, String path) throws IOException{
+    public static void stitchAndUnstitchChapterToPDF(Chapter chap, String path) throws IOException, COSVisitorException{
         BufferedImage stitched = compileChapterToTallImage(chap);
-
+        ImageIO.write(stitched,"png",new File("Stitched.png"));
         int height = stitched.getHeight();
         int width = stitched.getWidth();
+        int step = (int)(LETTER_PAGE_PROPORTION * width);
 
         ArrayList<BufferedImage> unstitched = new ArrayList<>(0);
-        for(int i = 0; i < (int)((double)height/4) ; i++){
-
-            unstitched.add(stitched.getSubimage(0, y, 32, 32));
+        for(int i = 0; i < (int)Math.ceil(height/step) + 1; i++){
+            unstitched.add(stitched.getSubimage(0, i * step, width,
+                    step * (i + 1) > height ? height - step * i : step));
         }
 
-        imagesToPdfPages(unstitched);
+        imagesToPdfPages(unstitched, path);
     }
 
     /**\
@@ -128,5 +160,23 @@ public class Savers {
 
         document.save(path);
         document.close();
+    }
+
+    private static BufferedImage imageTOBufferedImage(Image img){
+        BufferedImage bimg = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimg.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        return bimg;
+    }
+
+    public static boolean mkDir(String path){
+        File folder = new File(path);
+        if(!folder.exists()){
+            return folder.mkdir();
+        }
+        return true;
     }
 }
