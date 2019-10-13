@@ -72,7 +72,7 @@ public abstract class MangaDownloader {
     }
 
     void downloadChapter(Chapter chap, int type) throws IOException, COSVisitorException{
-        String path = "Downloaded/" + chap.getSeriesName() + "/";
+        String path = "downloaded/" + chap.getSeriesName() + "/";
         mkDir(path);
         path += chap.getNumber();
 
