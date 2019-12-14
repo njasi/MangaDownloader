@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - node # uses most recent stable node version
+dist: xenial # uses xenial environment
+notifications:
+  email:
+    on_success: change # default: change (only when going from broken to fixed)
+    on_failure: always # default: always (which is annoying, as it should be)
+install:
+  - npm ci # faster, goes only from package-lock
+script:
+  - npm test             # test the code
+  - npm run build-client # make the bundle
