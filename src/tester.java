@@ -17,13 +17,21 @@ public class tester {
         System.out.println("The test took " + sec + " seconds! (this does not account for threads finish time)");
     }
 
-
     private static void test() throws Exception{
         MangaDownloader readerTest = new MangaReaderDownloader();
-        MangaPage res = readerTest.getManga("https://www.mangareader.net/naruto");
-        readerTest.downloadManga(res,1,100, MangaDownloader.FIT_PAGES_TO_IMAGES);
+        MangaSearchResult[] pages = readerTest.search("Golden Kamuy");
+        for(MangaSearchResult res:pages){
+            System.out.println(res.toString());
+        }
+        System.out.println(readerTest.getManga(pages[0]).toString());
+//        MangaPage res = readerTest.getManga("https://www.mangareader.net/golden-kamui");
+//        readerTest.downloadManga(res,200,114, MangaDownloader.FIT_PAGES_TO_IMAGES);
     }
 
+    /**
+     *
+     * @param startTime
+     */
     private static void timer(Long startTime){
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -34,6 +42,7 @@ public class tester {
             }
         });
     }
+
     /**
      * This is mainly for testing purposes
      * @param url the url of the page you want the html from

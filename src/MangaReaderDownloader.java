@@ -14,8 +14,9 @@ public class MangaReaderDownloader extends MangaDownloader {
         Document doc = Jsoup.connect("https://www.mangareader.net/search/?w=" + term).get();
         Elements results = doc.getElementsByClass("mangaresultinner");
         MangaSearchResult[] out = new MangaSearchResult[results.size()];
-
+        int i = 0;
         for(Element result: results){
+            System.out.println("oof");
             Element image = result.getElementsByClass("imgsearchresults").first();
             Element name = result.getElementsByTag("h3").first();
             Element url = result.getElementsByTag("a").first();
@@ -28,8 +29,10 @@ public class MangaReaderDownloader extends MangaDownloader {
             String mangaUrl = "https://www.mangareader.net" + url.attr("href");
             String chapterNum = chapter.text();
             MangaSearchResult temp = new MangaSearchResult(mangaUrl, imageUrl, seriesName,chapterNum);
+            out[i] = temp;
+            i++;
         }
-        return null;
+        return out;
     }
 
     @Override
