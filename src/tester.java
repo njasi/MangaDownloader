@@ -9,7 +9,7 @@ public class tester {
 
     public static void main(String[] args) {
         try {
-            MangaDownloader test = new MangaReaderDownloader();
+            MangaDownloader test = new WebtoonDownloader();
             startTimer("SEARCH");
             MangaSearchResult firstResult = testSearch(test);
             endTimer();
@@ -60,7 +60,7 @@ public class tester {
         for (MangaSearchResult res : pages) {
             System.out.println(res.toString());
         }
-        return pages[0];
+        return pages[1];
     }
 
     private static MangaPage testGetManga(MangaDownloader test, MangaSearchResult res) throws Exception {
