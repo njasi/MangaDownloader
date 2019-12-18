@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class WebtoonDownloader extends MangaDownloader {
-    public static String SITE_URL = "https://www.webtoons.com";
+    public static final String SITE_URL = "https://www.webtoons.com";
+    public static final String NORMAL_SEARCH = "WEBTOON";
+    public static final String CANVAS_SEARCH = "CHALLENGE";
 
-    @Override
-    public MangaSearchResult[] search(String term, int page) throws IOException {
-        Document doc = Jsoup.connect("https://www.webtoons.com/search?keyword=" + term + "&searchType=WEBTOON&page=" + page).get();
-        Elements results = doc.getElementsByClass("card_item");
+    public MangaSearchResult[] search(String term, int page, String type) throws IOException {
+        System.out.println(String.format("https://www.webtoons.com/search?keyword=%s&searchType=%s&page=%d", term, type, page));
+        Document doc = Jsoup.connect(String.format("https://www.webtoons.com/search?keyword=%s&searchType=%s&page=%d", term, type, page)).get();
+        Elements results = doc.getElementsByClass(type.equals(NORMAL_SEARCH) ? "card_item" : "challenge_item");
         MangaSearchResult[] out = new MangaSearchResult[results.size()];
         int i = 0;
         for (Element result : results) {
@@ -32,6 +34,13 @@ public class WebtoonDownloader extends MangaDownloader {
             i++;
         }
         return out;
+    }
+
+    // https://www.webtoons.com/challenge/episodeList?titleNo=311042
+    // https://www.webtoons.com/challenge/episodeList?titleNo=3110421
+    @Override
+    public MangaSearchResult[] search(String term, int page) throws IOException {
+        return this.search(term, page, NORMAL_SEARCH);
     }
 
     @Override
@@ -59,7 +68,7 @@ public class WebtoonDownloader extends MangaDownloader {
         }
         do {
             currentPage++;
-            doc = Jsoup.connect(url + currentPage).get();
+            doc = Jsoup.connect(url + (possible.size() == 1 ? "" : currentPage)).get();
             last = doc.getElementsByClass("paginate").first().children().last();
             total.addAll(parseChapterPage(doc));
         } while (last.className().equals("pg_next") || Integer.parseInt(last.text()) > currentPage);
@@ -98,7 +107,6 @@ public class WebtoonDownloader extends MangaDownloader {
 
         Elements images = doc.getElementsByClass("_images");
         for (int i = 0; i < images.size(); i++) {
-            System.out.println(images.get(i).toString());
             chap.addImage(images.get(i).attr("data-url"));
         }
         chap.setReferFromUrl(true);
