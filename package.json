@@ -1,0 +1,65 @@
+{
+  "name": "mangadownloader",
+  "version": "1.0.0",
+  "description": "- mangareader.net - mangastream     - https://readms.net/manga -",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njasi/MangaDownloader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/njasi/MangaDownloader/issues"
+  },
+  "homepage": "https://github.com/njasi/MangaDownloader#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-proposal-decorators": "7.4.0",
+    "@babel/plugin-proposal-export-namespace-from": "7.2.0",
+    "@babel/plugin-proposal-function-sent": "7.2.0",
+    "@babel/plugin-proposal-json-strings": "7.2.0",
+    "@babel/plugin-proposal-numeric-separator": "7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-syntax-import-meta": "7.2.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.0",
+    "css-loader": "^3.3.2",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "^5.16.0",
+    "eslint-config-fullstack": "^6.0.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4",
+    "fullstack": "0.0.1",
+    "prettier": "1.11.1",
+    "react-test-renderer": "^16.4.2",
+    "redux-devtools-extension": "^2.13.5",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.6",
+    "history": "^4.10.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}

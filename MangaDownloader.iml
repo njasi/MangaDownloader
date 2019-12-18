@@ -7,32 +7,9 @@
     </content>
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/jsoup-1.12.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/pdfbox-1.8.16.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/commons-logging-1.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="com.sparkjava:spark-core:2.8.0" level="project" />
+    <orderEntry type="library" name="org.jsoup:jsoup:1.12.1" level="project" />
+    <orderEntry type="library" name="commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" name="org.apache.pdfbox:pdfbox:1.8.16" level="project" />
   </component>
 </module>
