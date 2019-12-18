@@ -6,6 +6,7 @@ public class MangaSearchResult {
     private String imageUrl;
     private String chapterNum;
     private String title;
+    private String author;
 
 
     MangaSearchResult(String url, String imageUrl, String title) {
@@ -15,21 +16,30 @@ public class MangaSearchResult {
     }
 
     MangaSearchResult(String url, String imageUrl, String title, String chapterNum) {
-        this(url,imageUrl, title);
+        this(url, imageUrl, title);
         this.chapterNum = chapterNum;
     }
 
-    public String getImageUrl(){
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public String getUrl(){
+    public String getUrl() {
         return url;
     }
 
-    public String getChapterCount(){
+    public String getChapterCount() {
         return chapterNum;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
 
     @Override
     public String toString() {
@@ -38,6 +48,7 @@ public class MangaSearchResult {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", chapterNum='" + chapterNum + '\'' +
                 ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
                 '}';
     }
 }

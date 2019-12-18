@@ -5,3 +5,4 @@ out/
 node_modules
 gui/bundle.js
 gui/bundle.js.map
+*.jar
