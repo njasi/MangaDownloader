@@ -40,7 +40,7 @@ public class WebtoonDownloader extends MangaDownloader {
     // https://www.webtoons.com/challenge/episodeList?titleNo=3110421
     @Override
     public MangaSearchResult[] search(String term, int page) throws IOException {
-        return this.search(term, page, CANVAS_SEARCH);
+        return this.search(term, page, NORMAL_SEARCH);
     }
 
     @Override
